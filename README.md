@@ -1,4 +1,4 @@
-#Projeto Conceitual de BD Relacional
+#Projeto Conceitual de BD Relacional (EM ELABORAÇÃO)
 
 Este modelo de Banco de Dados (BD) foi elaborado considerando o contexto de um **e-commerce**.
 
