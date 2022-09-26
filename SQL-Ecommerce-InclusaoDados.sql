@@ -19,11 +19,12 @@ insert into pj(idCliente, RazaoSocial, NomeFantasia, CNPJ)
 		Values(5,'Cliente Empresa5','Cliente Empresa5',51111111000111),
 			  (6,'Cliente Empresa6','Cliente Empresa6',61111111000111),
               (7,'Cliente Empresa7','Cliente Empresa7',71111111000111),
-              ('8','Cliente Empresa8','Cliente Empresa8',81111111000111);
+              (8,'Cliente Empresa8','Cliente Empresa8',81111111000111);
 -- select * from pj;              
 
+delete from pf;
 -- CLiente PF
-insert into pf(idCliente, Pnome, Mnome_letra, Unome, CPF)
+insert into pf(idPFCliente, Pnome, Mnome_letra, Unome, CPF)
 		values(1,'João','G','Alcantara',11111111119),
 			  (2,'Maria','S','Salles',21111111119),
               (3,'José','M','Salazar',31111111119),

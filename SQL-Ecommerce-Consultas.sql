@@ -25,8 +25,19 @@ select * from terceiroVendedor;
 select concat(Pnome,' ',Unome) as Nome_e_sobrenome 
 	from pf as f;
 
--- Consulta clientes em ordem alfabética    
-select * from pf order by Pnome;
+-- Consulta PF por ordem alfabética: nome, CPF e e-mail
+select distinct pf.Pnome, pf.CPF, cliente.Email
+	from pf join cliente
+    on cliente.idCliente = pf.idPFCliente
+    order by Pnome;
+
+
+
+-- CONSULTAS ALEATÓRIAS
+select idPFCliente, CPF from PF;
+select idCliente, Email, tipoCliente from cliente where tipoCliente='PF';
+
+
 
 
 

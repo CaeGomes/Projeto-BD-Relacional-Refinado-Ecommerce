@@ -35,20 +35,29 @@ create table pj(
 -- desc pj;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
+alter table pf drop constraint idPFCliente;
+
+alter table pf 
+	add idPFCliente int;
+
+alter table pf 
+	add constraint fk_pf_cliente foreign key(idPFCliente) references cliente(idCliente)
+    on update cascade;
+drop table pf;
 -- Cliente Pessoa Física
 create table pf(
 	idPF int auto_increment primary key,
-    idCliente int,
+    idPFCliente int,
     Pnome varchar(15),
     Mnome_letra varchar(3),
     Unome varchar(15),
     CPF char(11),
-    constraint fk_pf_cliente foreign key(idCliente) references cliente(idCliente),
+    constraint fk_pf_cliente foreign key(idPFCliente) references cliente(idCliente),
     constraint unico_cpf_cliente unique(CPF)
 );
 
 -- show tables;
--- desc pj;
+desc pf;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
 
