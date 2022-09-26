@@ -35,15 +35,7 @@ create table pj(
 -- desc pj;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
-alter table pf drop constraint idPFCliente;
 
-alter table pf 
-	add idPFCliente int;
-
-alter table pf 
-	add constraint fk_pf_cliente foreign key(idPFCliente) references cliente(idCliente)
-    on update cascade;
-drop table pf;
 -- Cliente Pessoa Física
 create table pf(
 	idPF int auto_increment primary key,
@@ -287,5 +279,16 @@ create table estoqueProduto(
 
 -- inclusão de atributo
 -- alter table pedido add Situação enum('Confirmado','Em processamento','Saiu para entrega','Entregue','Cancelado') default 'Confirmado';
+
+-- exclui atributo
+-- alter table pf drop constraint idPFCliente;
+
+-- altera nome de atributo
+-- alter table pf add idPFCliente int;
+
+-- inclui constraint
+-- alter table pf 
+	-- add constraint fk_pf_cliente foreign key(idPFCliente) references cliente(idCliente)
+    -- on update cascade;
 
 
