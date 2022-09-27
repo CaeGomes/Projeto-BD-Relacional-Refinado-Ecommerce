@@ -1,5 +1,5 @@
 -- Criação do BD para o cenário de E-Commerce
-create database ecommerce;
+-- create database ecommerce;
 use ecommerce;
 
 
@@ -32,7 +32,7 @@ create table pj(
 );
 
 -- show tables;
--- desc pj;
+desc pj;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
 
@@ -49,7 +49,7 @@ create table pf(
 );
 
 -- show tables;
-desc pf;
+-- desc pf;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
 
@@ -291,4 +291,13 @@ create table estoqueProduto(
 	-- add constraint fk_pf_cliente foreign key(idPFCliente) references cliente(idCliente)
     -- on update cascade;
 
+
+-- exclui constraint
+-- alter table pj drop constraint fk_pj_cliente;
+
+-- exclui atributo
+-- alter table pj drop idCliente;
+
+-- add atributo FK
+-- alter table pj add idPJCliente int;
 

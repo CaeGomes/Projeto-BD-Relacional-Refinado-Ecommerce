@@ -54,17 +54,18 @@ insert into terceiroVendedor(tRazaoSocial, tNomeFantasia, tCNPJ, tCEP, tRua, tCo
 							('Fornecedor Terceiro Brinquedos','Fornecedor Terceiro Brinquedos',2311111000111,71000000,'Rua A4','Lote A4','Bairro A4','Cidade A4','RS','cliente@A4.com.br',61933345678),
 							('Fornecedor Terceiro Papelaria','Fornecedor Terceiro Papelaria',2411111000111,71000000,'Rua A5','Lote A5','Bairro A5','Cidade A5','RS','cliente@A5.com.br',61934345678);
 -- select * from terceiroVendedor;
-                            
+
+
 -- Produto
 insert into produto(Categoria, Classificação_infantil, Especificações, Valor, Avaliação)
-			 Values('Eletronico',0, 'Fone de ouvido bluethoot Xiaomi',150,4),
+			 Values('Eletronico',0, 'Fone de ouvido bluethoot Xiaomi',150.50,4),
 				   ('Eletronico',0, 'Notebook Positivo i5 10ªG 6GB Ram HD 1Tera',3999.99,3),
                    ('Eletronico',0, 'Smart TV Samsung 50"',2550.50,5),
                    ('Decoração',0, 'Quadro Violino Stradivarius',1000,4),
                    ('Vestuário',0, 'Camiseta básica branca M',50,3),
                    ('Brinquedos',1, 'Lego Guarda Costeira',500,3),
                    ('Papelaria',0, 'Caneta Crow azul ponta média',120,3);
--- select * from produto;                   
+select * from produto;                   
 
 -- pagamento
 insert into pagamento values(4,1),
@@ -94,8 +95,15 @@ insert into pedido(idPedCliente, idPedPagamento, PedQuantidade, Situação, Fret
                   (2,3,30,'Confirmado',0,0),
                   (3,4,20,'Em processamento',20,1),
                   (3,5,30,'Saiu para entrega',0,1);
-
 -- select * from pedido;
+
+-- Relação produto/pedido: número pedido, número produto
+insert into produtoPedido values(1,1),
+								 (2,1),
+                                 (3,6),
+                                 (4,5),
+                                 (5,7);
+select * from produtoPedido;                                 
 
 -- entrega
 insert into entrega(Esituação, CodigoRastreio, ProdutoDevolvido)
@@ -107,6 +115,9 @@ insert into entrega(Esituação, CodigoRastreio, ProdutoDevolvido)
 -- select * from entrega;                   
 
 -- atualiza, altera campo de instância                
--- update fornecedor set idFEstoque=5 where idFornecedor=5;                
+-- update fornecedor set idFEstoque=5 where idFornecedor=5;       
+
+-- excluir instâncias, dados inseridos na tabela
+-- delete from produto;         
                 
                 
