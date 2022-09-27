@@ -66,4 +66,8 @@ Após a confirmação do pagamento, o pedido é separado e a **entrega** é real
 
 Com base no Modelo Relacional, implementamos o banco de dados no SGBD MySQL.
 
-Foram elaboradas algumas consultas para análise.
+Foram elaboradas consultas para análise:
+  - Consultas básicas;
+  - Nome e sobrenome de clientes Pessoa Física;
+  - PF por ordem alfabética: nome, CPF e e-mail;
+  - Pedidos em ordem crescente com produto e preço por clientes.
