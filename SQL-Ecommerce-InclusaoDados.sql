@@ -22,7 +22,7 @@ insert into pj(idCliente, RazaoSocial, NomeFantasia, CNPJ)
               (8,'Cliente Empresa8','Cliente Empresa8',81111111000111);
 -- select * from pj;              
 
-delete from pf;
+
 -- CLiente PF
 insert into pf(idPFCliente, Pnome, Mnome_letra, Unome, CPF)
 		values(1,'João','G','Alcantara',11111111119),
@@ -32,13 +32,19 @@ insert into pf(idPFCliente, Pnome, Mnome_letra, Unome, CPF)
 -- select * from pf;              
 
 -- Estoque
-insert into estoque(Quantidade)
-			  values(10);
--- select * from estoque;	
+insert into estoque values(1),
+						  (2),
+                          (3),
+                          (4),
+                          (5),
+                          (6),
+                          (7);
+select * from estoque;	
 
 -- Fornecedores 	
 insert into fornecedor(fRazaoSocial, fNomeFantasia, fCNPJ, fCEP, fRua, fComplemento, fBairro, fCidade, fEstado, fEmail, fTelContato)
-				values('Fornecedor Eletrônico','Fornecedor Eletrônico',9111111000111,71000000,'Rua E','Lote E','Bairro E','Cidade E','MG','cliente@E.com.br',61992345678),
+				values('Fornecedor Terceiro Eletrônico','Fornecedor Terceiro Eletrônico',2011111000111,71000000,'Rua A1','Lote A1','Bairro A1','Cidade A1','RS','cliente@A1.com.br',61930345678),
+					  ('Fornecedor Eletrônico','Fornecedor Eletrônico',9111111000111,71000000,'Rua E','Lote E','Bairro E','Cidade E','MG','cliente@E.com.br',61992345678),
 					  ('Fornecedor Decoração','Fornecedor Decoração',1011111000111,71000000,'Rua F','Lote F','Bairro F','Cidade F','MG','cliente@F.com.br',61910345678),
                       ('Fornecedor Vestuário','Fornecedor Vestuário',1111111000111,71000000,'Rua G','Lote G','Bairro G','Cidade G','MG','cliente@G.com.br',61911345678),
                       ('Fornecedor Brinquedos','Fornecedor Brinquedos',1211111000111,71000000,'Rua H','Lote H','Bairro H','Cidade H','MG','cliente@H.com.br',61912345678),
@@ -66,44 +72,71 @@ insert into produto(Categoria, Classificação_infantil, Especificações, Valor
                    ('Brinquedos',1, 'Lego Guarda Costeira',500,3),
                    ('Papelaria',0, 'Caneta Crow azul ponta média',120,3);
 select * from produto;                   
+delete from pagamento;
+-- pagamento: id, forma pagamento ('Boleto','CCrédito','Pix'), confirmado
+insert into pagamento values(1,'Boleto',0),
+							(2,'Boleto',1),
+                            (3,'Boleto',0),
+                            (4,'CCrédito',1),
+                            (5,'Pix',1);
+select * from pagamento;
 
--- pagamento
-insert into pagamento values(4,1),
-							(5,1);
--- select * from pagamento;
 
 -- pagamento tipo boleto
-insert into boleto(Bnúmero)
-			Values(0000000001);
+insert into boleto(Bnúmero, idBPagamento)
+			Values(0000000001, 1);
 -- select * from boleto;    
 
 -- pagamento tipo cartão de crédito
-insert into cartaoCredito(CCnúmero, Nometitular, VencimentoCartao, CodigoVerificador)
-				   Values(1111222233334444,'JOSE M SALAZAR',20280901, 001);
--- SELECT * FROM cartaoCredito;
+insert into cartaoCredito(CCnúmero, Nometitular, VencimentoCartao, CodigoVerificador, idCCPagamento)
+				   Values(1111222233334444,'JOSE M SALAZAR',20280901, 001, 4);
+-- select * from cartaoCredito;
 
--- pagamento tipo pix
-insert into pix(Pcnpj)
-		 Values(25258147000136);
+-- pagamento tipo pix: id, CNPJ, idPagamento
+insert into pix(Pcnpj, idPPagamento)
+		 Values(25258147000136, 5);
 -- select * from pix;
 
 -- update pedido set idPedido=5 where idPedido=10;
 -- Pedido
-insert into pedido(idPedCliente, idPedPagamento, PedQuantidade, Situação, Frete, ConfirmaçãoPagamento)
+insert into pedido(idPedCliente, idPedPagamento, PedQuantidade, Situação, Frete)
 			values(1,1,10,'Confirmado',10.50,0),
 				  (2,2,20,'Em processamento',0,1),
                   (2,3,30,'Confirmado',0,0),
                   (3,4,20,'Em processamento',20,1),
                   (3,5,30,'Saiu para entrega',0,1);
--- select * from pedido;
+select * from pedido;
 
--- Relação produto/pedido: número pedido, número produto
+-- Relação produto/pedido: número pedido, código produto
 insert into produtoPedido values(1,1),
 								 (2,1),
                                  (3,6),
                                  (4,5),
                                  (5,7);
-select * from produtoPedido;                                 
+select * from produtoPedido;
+
+-- Relação estoque/produto: número estoque, código produto, quantidade
+insert into estoqueProduto values(1,1,40),
+								 (2,1,50),
+                                 (3,6,50),
+                                 (4,5,50),
+                                 (5,5,50),
+                                 (6,7,10),
+                                 (7,2,50);
+-- select * from estoqueProduto;                                 
+
+-- Produto/vendedor terceiro: código vendedor terc, código produto, quantidade
+insert into produtoVendedor values(1,1,40),
+								  (2,7,10);
+-- select * from produtoVendedor;
+
+-- Produto/fornecedor: código fornecedor, código produto, quantidade
+insert into produtoFornecedor values(1,1,50),
+									(2,6,50),
+                                    (3,5,50),
+                                    (4,5,50),
+								    (5,2,50);
+-- select * from produtoFornecedor;
 
 -- entrega
 insert into entrega(Esituação, CodigoRastreio, ProdutoDevolvido)

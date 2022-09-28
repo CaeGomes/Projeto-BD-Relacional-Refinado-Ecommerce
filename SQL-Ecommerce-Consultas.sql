@@ -31,13 +31,23 @@ select distinct pf.Pnome, pf.CPF, cliente.Email
     on cliente.idCliente = pf.idPFCliente
     order by Pnome;
 
--- Consulta de pedidos com produto por clientes
-select distinct idPedido  Número_pedido, idPedCliente Código_cliente, concat(Pnome,' ',Unome) as Nome_e_sobrenome, idProduto Cód_produto, Especificações
+-- Consulta de pedidos em ordem crescente com produto e preço por clientes
+select distinct idPedido  Número_pedido, idPedCliente Código_cliente, concat(Pnome,' ',Unome) as Nome_e_sobrenome, 
+	idProduto Cód_produto, Especificações, Valor
 	from produtoPedido, pedido, pf, cliente, produto
     where idPedCliente=idCliente and idPFCliente=idPedCliente and idPPPedido=idPedido and idPPProduto=idProduto
     order by idPedido;
 
+-- Pedidos feitos por clientes
+select distinct idPedido Núm_pedido, concat(Pnome,' ',Unome) as Cliente, Especificações, pedQuantidade Quantidade
+	from pedido, produto, produtoPedido, pf
+    where idPedido=idPPPedido and idPFCliente=idPedCliente and idProduto=idPPProduto
+    order by idPedido;
 
+-- Algum vendedor terceiro é também fornecedor?
+-- select fCNPJ
+	-- from fornecedor
+	-- where fCNPJ=
 
 
 -- CONSULTAS ALEATÓRIAS
