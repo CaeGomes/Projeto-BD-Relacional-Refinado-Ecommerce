@@ -224,26 +224,26 @@ create table produtoFornecedor(
     idProdFornProduto int,
     constraint fk_prodForn_fornecedor foreign key(idProdFornFornecedor) references fornecedor(idFornecedor),
     constraint fk_prodForn_produto foreign key(idProdFornProduto) references produto(idProduto),
-    primary key(idProdFornFornecedor,idProdFornProduto),
+    -- primary key(idProdFornFornecedor,idProdFornProduto),
     fornQuantidade int
 );
 
 -- show tables;
--- desc produtoFornecedor;
+desc produtoFornecedor;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
-
+drop table produtoVendedor;
 -- Produto/vendedor (terceiros)
 create table produtoVendedor(
 	idProdVTercVendedor int,
     constraint fk_prodVen_terceiro foreign key(idProdVTercVendedor) references terceiroVendedor(idTerceiroVendedor),
     idProdVProduto int,
     constraint fk_prodVen_produto foreign key(idProdVProduto) references produto(idProduto),
-    primary key(idProdVTercVendedor,idProdVProduto),
+    -- primary key(idProdVTercVendedor,idProdVProduto),
     vendTerQuantidade int
 );
 
 -- show tables;
--- desc produtoVendedor;
+desc produtoVendedor;
 -- select * from information_schema.table_constraints where constraint_schema = 'ecommerce';
 
 -- Estoque/produto

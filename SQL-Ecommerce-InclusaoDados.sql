@@ -38,7 +38,8 @@ insert into estoque values(1),
                           (4),
                           (5),
                           (6),
-                          (7);
+                          (7),
+                          (8);
 select * from estoque;	
 
 -- Fornecedores 	
@@ -122,21 +123,26 @@ insert into estoqueProduto values(1,1,40),
                                  (4,5,50),
                                  (5,5,50),
                                  (6,7,10),
-                                 (7,2,50);
--- select * from estoqueProduto;                                 
+                                 (7,2,50),
+                                 (8,7,50);
+
+select * from estoqueProduto;                                 
 
 -- Produto/vendedor terceiro: código vendedor terc, código produto, quantidade
 insert into produtoVendedor values(1,1,40),
-								  (2,7,10);
--- select * from produtoVendedor;
+								  (5,7,10),
+                                  (5,7,50);
+select * from produtoVendedor;
+
 
 -- Produto/fornecedor: código fornecedor, código produto, quantidade
-insert into produtoFornecedor values(1,1,50),
-									(2,6,50),
+insert into produtoFornecedor(idProdFornFornecedor, idProdFornProduto, fornQuantidade) 
+							  values(1,1,50),
+									(4,6,50),
                                     (3,5,50),
-                                    (4,5,50),
-								    (5,2,50);
--- select * from produtoFornecedor;
+                                    (3,5,50),
+								    (1,2,50);
+select * from produtoFornecedor;
 
 -- entrega
 insert into entrega(Esituação, CodigoRastreio, ProdutoDevolvido)

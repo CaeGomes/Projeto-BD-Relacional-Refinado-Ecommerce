@@ -1,22 +1,35 @@
 use ecommerce;
 
--- Consultas básicas
+-- CONSULTAS BÁSICAS
+-- Lista de clientes
 select * from cliente;
+-- Lista de clientes PJ
 select * from pj;
+-- Lista de clientes PF
 select * from pf;
 
+-- Relação de transações com status sobre pagamento
 select * from pagamento;
+-- Relação de boleto emitido para pagamento
 select * from boleto;
+-- Relação de cartões registrados como forma de pagamento
 select * from cartaoCredito;
+-- Relação de pagamentos via Pix
 select * from pix;
 
+-- Quantidade de estoques gerados
 select * from estoque;
+-- Relação de produtos
 select * from produto;
 
+-- Relação de pedidos realizados
 select * from pedido;
+-- Relação de entregas com situação (0-não realizada, 1-realizada)
 select * from entrega;
 
+-- Relação de fornecedores
 select * from fornecedor;
+-- Relação de vendedoes terceiros
 select * from terceiroVendedor;
 
 
@@ -45,9 +58,25 @@ select distinct idPedido Núm_pedido, concat(Pnome,' ',Unome) as Cliente, Especi
     order by idPedido;
 
 -- Algum vendedor terceiro é também fornecedor?
--- select fCNPJ
-	-- from fornecedor
-	-- where fCNPJ=
+select fCNPJ CNPJ_Fornecedor, tCNPJ CNPJ_VendedorTerc
+	from fornecedor, terceiroVendedor
+	where fCNPJ=tCNPJ;
+
+-- Relação de produtos por fornecedor  
+select p.Categoria, p.Especificações, fRazaoSocial Nome_Fornecedor, fornQuantidade Qtde
+	from produto as p, produtoFornecedor join fornecedor
+    where idProdFornProduto=p.idProduto and idProdFornFornecedor=idFornecedor; 
+
+-- Relação de produtos por vendedor terceiro
+select p.Categoria, p.Especificações, tRazaoSocial Nome_Vendedor, vendTerQuantidade Qtde
+	from produto as p, produtoVendedor join terceiroVendedor
+    where idProdVProduto=p.idProduto and idProdVTercVendedor=idTerceiroVendedor;
+
+-- Relação de estoque por produto e quantidade
+select idEPEstoque Número_Estoque, idEPProduto Código_Produto, Especificações, epQuantidade Quantidade
+	from estoqueProduto, produto
+    where idEPProduto=idProduto
+    order by Especificações;
 
 
 -- CONSULTAS ALEATÓRIAS
